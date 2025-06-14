@@ -1,13 +1,17 @@
 package com.ingemark.zadatak.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Product", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "code")
-})
+@Table(name = "Product")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ProductEntity {
 
     @Id
@@ -15,19 +19,19 @@ public class ProductEntity {
     @SequenceGenerator(name = "product_seq", sequenceName = "product_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(length = 10, nullable = false, unique = true)
+    @Column(unique = true)
     private String code;
 
-    @Column(nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "price_eur", nullable = false)
+    @Column(name = "price_eur")
     private BigDecimal priceEur;
 
-    @Column(name = "price_usd", nullable = false)
+    @Column(name = "price_usd")
     private BigDecimal priceUsd;
 
-    @Column(name = "is_available", nullable = false)
+    @Column(name = "is_available")
     private Boolean isAvailable;
 
 }
