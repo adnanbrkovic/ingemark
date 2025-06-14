@@ -25,12 +25,12 @@ public class Mapper {
             return null;
         }
         ProductEntity productEntity = new ProductEntity();
-        product.setId(product.getId());
-        product.setCode(product.getCode());
-        product.setName(product.getName());
-        product.setPriceEur(product.getPriceEur());
-        product.setPriceUsd(product.getPriceUsd());
-        product.setIsAvailable(product.getIsAvailable());
+        productEntity.setId(product.getId());
+        productEntity.setCode(product.getCode());
+        productEntity.setName(product.getName());
+        productEntity.setPriceEur(product.getPriceEur());
+        productEntity.setPriceUsd(product.getPriceUsd());
+        productEntity.setIsAvailable(product.getIsAvailable());
 
         return productEntity;
     }

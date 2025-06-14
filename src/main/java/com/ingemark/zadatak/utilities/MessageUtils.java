@@ -19,7 +19,7 @@ public class MessageUtils {
     public String getMessage(String messageCode,  Object[] args){
 
         return messageSource.getMessage(
-                "product.price.min",
+                messageCode,
                 args,
                 getLocale()
             );

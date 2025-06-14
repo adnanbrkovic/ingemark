@@ -1,6 +1,7 @@
 package com.ingemark.zadatak.facade.impl;
 
 import com.ingemark.zadatak.domain.facade.exchangerate.hnb.HnbRateResponse;
+import com.ingemark.zadatak.domain.model.CurrencyCodes;
 import com.ingemark.zadatak.exception.ValidationException;
 import com.ingemark.zadatak.facade.HnbFacade;
 import com.ingemark.zadatak.utilities.MessageUtils;
@@ -28,11 +29,11 @@ public class HnbFacadeImpl implements HnbFacade {
     @Autowired
     private MessageUtils messageUtils;
 
+
     @Override
     public HnbRateResponse getRateByCurrencyCode(String code){
 
-        String url = new StringBuilder(hnbBaseUrl).append("?").append(code).toString();
-        log.info("HNB get rate url" + url);
+        String url = new StringBuilder(hnbBaseUrl).append("?valuta=").append(code).toString();
 
         ResponseEntity<List<HnbRateResponse>> response = restTemplate.exchange(
                 url,
@@ -47,12 +48,17 @@ public class HnbFacadeImpl implements HnbFacade {
                     new Object[]{code}));
 
         }
-        return rateList.get(0);
+        HnbRateResponse rate = rateList.get(0);
+        log.info("HNB get rate url = {}, rate value = {}", url, rate);
+        return rate;
 
     }
 
-    //Wrapper metode za stvari koje nam trebaju u aplikaciji (napravljene zbog pojednostavljenja poziva i cisceg koda)
-    //public
+    //Wrapper metoda za stvari koje nam trebaju u aplikaciji (napravljene zbog pojednostavljenja poziva i cisceg koda)
+    @Override
+    public HnbRateResponse getUsdRate(){
+        return getRateByCurrencyCode(CurrencyCodes.USD.name());
+    }
 
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -38,4 +39,11 @@ public class HnbRateResponse implements Serializable {
 
     @JsonProperty("valuta")
     private String valuta;
+
+    public BigDecimal getSrednjiTecajAsBigDecimal() {
+        if (srednjiTecaj == null || srednjiTecaj.isEmpty()) {
+            return null;
+        }
+        return new BigDecimal(srednjiTecaj.replace(",", "."));
+    }
 }
