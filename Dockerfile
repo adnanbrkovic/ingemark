@@ -5,9 +5,9 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-#RUN mvn clean package
-#Testovi se pokrecu prije nego što je postgres kontejner spreman pa sam stavio skip
-RUN mvn clean package -DskipTests
+#Ako se ne koristi mockani repo, testovi se pokrecu prije nego što je postgres kontejner spreman pa treba staviti -DskipTests
+#RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 # Pokretanje
 FROM openjdk:21-slim

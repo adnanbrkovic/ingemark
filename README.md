@@ -31,3 +31,4 @@ Nakon pokretanja kontejnera dostupni su sljedeći url-ovi:
 - što se tiče domenskih objekata, zbog jednostavnosti koristio sam samo dva sloja - klasa Product predstavlja i dto i model, dok je ProductEntity korišten za repository sloj, te je napravljen Mapper u tu svrhu
 - Repository - stavio sam da Spring data JPA automatski kreira implementaciju repo interfacea sa crud operacijama, nisam je ručno pravio
 - Security - postavio sam jednostavni url security sa InMemoryUserDetails-om za zaštitu /product url-a
+- napravljen je jednostavan test koji testira tražene tri servisne metode i mocka repo

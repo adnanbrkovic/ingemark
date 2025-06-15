@@ -34,6 +34,13 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                        "/actuator/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-resources/**",
+                                        "/swagger-ui.html",
+                                        "/swagger-ui/**")
+                                .permitAll()
                         .requestMatchers("/product/**")
                         .hasRole(INGEMARK_ROLE)
                         .anyRequest().denyAll())
