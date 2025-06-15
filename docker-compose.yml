@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.4'
 
 services:
 
@@ -13,6 +13,11 @@ services:
     ports:
       - "5432:5432"
     command: postgres -c listen_addresses='*'
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ingemark" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - persistent:/var/lib/postgresql/data
 
@@ -35,14 +40,14 @@ services:
 
 
 
-#  ingemark:
-#    restart: always
-#    build: .
-#    ports:
-#      - "8080:8080"
-
-#    depends_on:
-#      - postgres
+  ingemark:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   persistent:
