@@ -2,7 +2,7 @@
 
 ## Pokretanje aplikacije
 - Napravio sam docker-compose koji pokreće aplikaciju u obliku docker kontejnera, odnosno kontejnera za Postgres, PgAdmin, i samu aplikaciju
-- Pri pokretanju aplikacija se bilda u Docker image na osnovu multi stage Docker filea (koji prvo radi maven package, a zatim pokretanje jar-a)
+- Pri pokretanju aplikacija se bilda u Docker image na osnovu multi stage Docker filea (koji prvo radi maven package i kopiranje jar-a, a zatim pokretanje)
 - docker compose se pokreće sljedećom naredbom:
 - **docker compose up --build**
 
